@@ -9,4 +9,8 @@ global.User = function(socket) {
     socket.on('test', function(data) {
         console.log("Son nom est: " + this.name);
     });
+
+    socket.on('position', function(data) {
+        console.log(data);
+    });
 }

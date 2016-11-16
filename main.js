@@ -1,6 +1,7 @@
 require('colors');
 require('./classUser');
 require('./utils');
+require('./dbManager');
 
 /* ######################################################### */
 // Définition des variables
@@ -28,6 +29,10 @@ console.log("");
 console.log(Write("Starting server on port: " + port + "...").green);
 var io = require('socket.io')(port);
 console.log(Write("Starting started on port: " + port + " !").green);
+console.log(Write("Connexion to MySQL@localhost...").green);
+connection.connect();
+console.log(Write("Connected to MySQL !").green);
+
 
 // event de connection
 io.on('connection', function(socket) {
