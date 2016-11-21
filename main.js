@@ -1,15 +1,10 @@
 require('colors');
-require('./classUser');
 require('./utils');
-require('./dbManager');
+global.http = require('https');
 
 /* ######################################################### */
 // Définition des variables
 var port = 357;
-
-/* ######################################################### */
-// On vide la console
-process.stdout.write('\033c');
 
 /* ######################################################### */
 // Présentation
@@ -27,14 +22,10 @@ console.log("  88     `8'     88   `\"Ybbd8\"'   `\"Ybbd8\"'  88       88  `\"8b
 // Démarrage du server
 console.log("");
 console.log(Write("Starting server on port: " + port + "...").green);
-var io = require('socket.io')(port);
+global.io = require('socket.io')(port);
+require('./classUser');
 console.log(Write("Starting started on port: " + port + " !").green);
 console.log(Write("Connexion to MySQL@localhost...").green);
-connection.connect();
+var mysql = require('mysql2');
+global.connection = mysql.createConnection({host:'localhost', user: 'root', password: '111', database: 'mechas'});
 console.log(Write("Connected to MySQL !").green);
-
-
-// event de connection
-io.on('connection', function(socket) {
-    var user = new User(socket);
-});
