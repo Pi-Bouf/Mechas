@@ -1,6 +1,7 @@
 require('colors');
 require('./utils');
 global.http = require('https');
+global.fs = require('fs');
 
 /* ######################################################### */
 // Définition des variables
