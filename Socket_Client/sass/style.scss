@@ -1,0 +1,130 @@
+body {
+    background: #2980b9;
+    background: -webkit-linear-gradient(to left, #2980b9, #2c3e50);
+    background: linear-gradient(to left, #2980b9, #2c3e50);
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#modalTag {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    .modal-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 300px;
+        height: 340px;
+        background-color: white;
+        border-radius: 10px;
+        .modal-title {
+            text-align: center;
+            padding: 10px;
+            font-size: 25px;
+            background-color: #ED2F75;
+            color: white;
+            border-radius: 3px;
+        }
+        .tagForm {
+            padding: 10px;
+            label {
+                width: 100px;
+                float: left;
+            }
+            .button {
+                text-align: center;
+                background-color: #ED2F75;
+                border-radius: 4px;
+                color: white;
+                font-size: 18px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                display: inline-block;
+                width: 45%;
+                margin: 1.7%;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#actionPush {
+    text-align: center;
+    margin-top: 50px;
+    .button {
+        background-color: white;
+        display: none;
+        margin: 5px;
+        border-radius: 2px;
+        font-size: 25px;
+        color: #444;
+        cursor: pointer;
+        padding: 5px;
+        &:hover {
+            background-color: #EEEEEE;
+        }
+    }
+}
+
+#itemList {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50px;
+    .item {
+        background-color: white;
+        color: rgb(68, 68, 68);
+        height: 80px;
+        border-radius: 2px;
+        padding: 5px;
+        margin-bottom: 10px;
+        img {
+            height: 100%;
+            float: left;
+            border-radius: 2px;
+        }
+        .name {
+            cursor: pointer;
+            float: left;
+            margin-left: 50px;
+            margin-top: 33px;
+            font-weight: bold;
+        }
+        .progressStatut {
+            display: none;
+            float: right;
+            height: 40px;
+            width: 202px;
+            margin-top: 34px;
+            margin-right: 20px;
+            .bar {
+                height: 10px;
+                border-radius: 5px;
+                border: 1px solid #357AB7;
+                width: 202px;
+                .progress_bar {
+                    background-color: #357AB7;
+                    width: 0px;
+                    height: 8px;
+                    border-radius: 5px;
+                    margin-top: 1px;
+                    margin-left: 1px;
+                }
+                .status {
+                    margin-top: 7px;
+                    font-size: 14px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

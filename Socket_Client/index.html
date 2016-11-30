@@ -1,15 +1,49 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <title>Socket.IO</title>
+    <title>YouTube</title>
+    <meta charset="UTF-8">
+    <link href="styles/style.css" rel="stylesheet">
+    <script src="scripts/script.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <script src="script.js"></script>
-
 </head>
 
 <body>
-    
+    <div id="modalTag">
+        <div class="modal-content">
+            <div class="modal-title">Editeur de TAG</div>
+            <div class="tagForm">
+                <p><label for="titreFichier">Titre fichier:</label><input type="text" placeholder="Titre du fichier" id="titreFichier"></p>
+                <p><label for="titre">Titre:</label><input type="text" placeholder="Titre" id="titre"></p>
+                <p><label for="auteur">Auteur:</label><input type="text" placeholder="Auteur" id="auteur"></p>
+                <p><label for="album">Album:</label><input type="text" placeholder="Album" id="album"></p>
+                <p><label for="annee">Année:</label><input type="text" placeholder="Année" id="annee"></p>
+                <p>
+                    <label for="style">Style:</label>
+                    <select id="style">
+                        <option value="Electronic">Electronic</option>
+                        <option value="Rock">Rock</option>
+                        <option value="Chillstep/Chill">Chillstep/Chill</option>
+                        <option value="Old">Old</option>
+                        <option value="Movie">Film</option>
+                        <option value="Epic">Epique</option>
+                        <option value="USRap">Rap US</option>
+                    </select>
+                </p>
+                <p>
+                    <div class="button" id="tagSave">Enregistrer</div>
+                    <div class="button" id="modalLeave">Quitter</div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="actionPush">
+        <div class="button" id="sync">Synchroniser</div>
+        <div class="button" id="down">Télécharger</div>
+    </div>
+    <div id="itemList">
+    </div>
 </body>
 
 </html>
