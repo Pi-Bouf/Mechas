@@ -1,3 +1,87 @@
+var MyYTApp = {
+
+    googleButton: null,
+    accountDiv: null,
+    access_token: null,
+    playList: new Array(),
+    socket: null,
+
+    init: function () {
+        this.googleButton = document.getElementById('google-signin');
+        this.accountDiv = document.getElementById('account');
+        this.initGoogleLogin();
+        this.socket = io('127.0.0.1:357');
+    },
+
+    initGoogleLogin: function () {
+        gapi.load('auth2', () => {
+            var googleGAPI = gapi.auth2.init({ client_id: '425821798574-6edkclgcjsfgturq2bsoarecr7fo6mhj.apps.googleusercontent.com', scope: 'https://www.googleapis.com/auth/youtube' });
+            googleGAPI.then(() => {
+                if (googleGAPI.isSignedIn.Ab == true) {
+                    var profile = googleGAPI.currentUser.get().getBasicProfile();
+                    this.access_token = googleGAPI.currentUser.get().getAuthResponse().access_token;
+                    this.accountDiv.innerHTML = "Bonjour, <i><strong>" + profile.getName() + "</strong></i>";
+                    this.userLoadPlaylist();
+                } else {
+                    gapi.signin2.render('google-signin', {
+                        'scope': 'profile email https://www.googleapis.com/auth/youtube',
+                        'longtitle': false,
+                        'theme': 'light',
+                        'onsuccess': () => { this.userLogged(); }
+                    });
+                }
+            });
+        });
+    },
+
+    userLogged: function () {
+        window.location.reload();
+    },
+
+    userLoadPlaylist: function () {
+        $("#account").delay(500).animate({ 'margin-top': '30px' }, 800).delay(100).animate({ 'width': '400px', 'height': '90px' }, 300, () => {
+            var req = new XMLHttpRequest();
+            req.open('GET', 'https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&maxResults=50&access_token=' + this.access_token, true);
+            req.onreadystatechange = (aEvt) => {
+                if (req.readyState == 4) {
+                    if (req.status == 200) {
+                        var body = JSON.parse(req.responseText);
+                        for (pl in body.items) {
+                            this.playList[body.items[pl].id] = body.items[pl].snippet.title;
+                        }
+                        this.userDisplayPlaylist();
+                    }
+                }
+            };
+            req.send(null);
+        });
+    },
+
+    userDisplayPlaylist: function () {
+        var playlistDiv = document.createElement('div');
+        playlistDiv.setAttribute('id', 'playlist');
+        for (playlistID in this.playList) {
+            var item = document.createElement('div');
+            item.setAttribute('class', 'item');
+            item.setAttribute('id', playlistID);
+            item.innerHTML = this.playList[playlistID];
+            playlistDiv.appendChild(item);
+        }
+        this.accountDiv.appendChild(playlistDiv);
+    }
+};
+
+function loadingApp() {
+    MyYTApp.init();
+}
+
+window.onload = function () {
+    var element = document.createElement('script');
+    element.setAttribute('src', 'https://apis.google.com/js/platform.js?onload=loadingApp');
+    document.getElementsByTagName('head')[0].appendChild(element);
+}
+
+/*
 window.onload = function() {
 
     var itemList = document.getElementById("itemList");
@@ -113,4 +197,4 @@ window.onload = function() {
         }, true);
         itemList.appendChild(item);
     }
-}
+} */

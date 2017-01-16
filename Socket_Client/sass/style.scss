@@ -5,6 +5,41 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+#account {
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    padding: 15px 20px 20px 20px;
+    margin: auto auto auto auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    color: #858585;
+    .g-signin2 {
+        display: inline-block;
+    }
+    #playlist {
+        margin: 0px 10px 10px 10px;
+        text-align: center;
+        padding: 0px 10px 10px 10px;
+        .item {
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid #EEEEEE;
+            border-radius: 5px;
+            &:hover {
+                color: #2c3e50;
+            }
+        }
+    }
+}
+
 #modalTag {
     display: none;
     position: fixed;
