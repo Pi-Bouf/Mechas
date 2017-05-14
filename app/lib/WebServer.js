@@ -5,6 +5,7 @@ var path = require('path');
 class WebServer {
     constructor(port) {
         app.use('/', express.static(path.join(__dirname, '../../public')));
+        app.use('/data', express.static(path.join(__dirname, '../../data/Videos')));
         app.listen(port);
         console.log("WebServer started !");
     }

@@ -106,6 +106,8 @@ class YTDownloader {
                     console.log(colors.yellow("Video downloaded: " + videoID));
                     this.downloadQueue--;
 
+                    // ADD MUSIC MODEL (Update, Extract, Save, Download,...)
+
                     connection.query('SELECT downloaded FROM videos WHERE videoID = "' + videoID + '"', (error, results, fields) => {
                         if (error) {
                             throw error;
