@@ -18,14 +18,16 @@ class YTDownloader {
         clientList.forEach((client) => {
             client.videoToDownloadList.forEach((element) => {
                 if (this.videoToDownloadList.indexOf(element) == -1 && this.videoDownloaded.indexOf(element) == -1) {
-                    this.videoToDownloadList.push(element);
+                    //this.videoToDownloadList.push(element);
+                    new Video(element);
+                    console.log("[2]: " + element);
                 }
             });
         });
         if (this.videoToDownloadList.length != 0) {
             console.log(colors.magenta(this.videoToDownloadList.length + " musics to download !"));
             if (!this.downloadingIsOn) {
-                this.startDownloadProcess();
+                //this.startDownloadProcess();
             }
         } else {
             console.log(colors.red("Nothing to download..."));

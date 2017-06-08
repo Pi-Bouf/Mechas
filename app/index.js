@@ -2,10 +2,13 @@ global.config = require('../config/config.json');
 global.DBManager = require('./lib/DBManager');
 global.colors = require('colors');
 global.Client = require('./model/Client');
+global.Video = require('./model/Video');
 var WebServer = require('./lib/WebServer');
 var SocketServer = require('./lib/SocketServer');
 var YTDownloader = require('./lib/YTDownloader');
 var mysql = require('mysql');
+var PouchDB = require('pouchdb');
+global.videoDB = new PouchDB('data/db_video')
 
 /* ######################################################### */
 // Présentation
