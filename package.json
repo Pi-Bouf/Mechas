@@ -16,7 +16,8 @@
     "merge-stream": "^1.0.1",
     "mysql": "^2.13.0",
     "path": "^0.12.7",
-    "socket.io": "^1.7.3"
+    "socket.io": "^1.7.3",
+    "ytdl-core": "^0.15.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1"

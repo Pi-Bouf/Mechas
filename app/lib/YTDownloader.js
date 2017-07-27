@@ -1,5 +1,6 @@
-var https = require('https');
-var fs = require('fs');
+const https = require('https');
+const fs = require('fs');
+const ytdl = require('ytdl-core');
 
 class YTDownloader {
     constructor() {
@@ -7,6 +8,7 @@ class YTDownloader {
         this.videoDownloaded = Array();
         this.downloadingIsOn = false;
         this.downloadQueue = 0;
+        this.downLoadQueueMaxSize = 2;
 
         setInterval(() => {
             this.getAllMusicFromClient();
@@ -40,7 +42,7 @@ class YTDownloader {
                 clearInterval(intervalForDownload);
                 this.downloadingIsOn = false;
             } else {
-                if (this.downloadQueue < 5) {
+                if (this.downloadQueue < this.downLoadQueueMaxSize) {
                     this.checkVideoData(this.videoToDownloadList[0]);
                 }
             }
@@ -69,16 +71,7 @@ class YTDownloader {
                         });
                     });
                 }).then((name) => {
-                    https.get("https://helloacm.com/api/video/?cached&video=https://www.youtube.com/watch?v=" + videoID, (res) => {
-                        let videoDataUrl = "";
-                        res.on("data", (data) => {
-                            videoDataUrl += data;
-                        });
-                        res.on("end", () => {
-                            videoDataUrl = JSON.parse(videoDataUrl);
-                            this.downloadVideo(videoDataUrl.url, name, videoID);
-                        });
-                    });
+                    this.downloadVideo(name, videoID);
                 });
             }
         });
@@ -89,6 +82,41 @@ class YTDownloader {
         this.videoToDownloadList.remove(videoID);
     }
 
+    downloadVideo(name, videoID) {
+        let videoURL = "https://www.youtube.com/watch?v=" + videoID;
+
+        try {
+            ytdl(videoURL)
+                .pipe(fs.createWriteStream("./data/Videos/" + videoID + " -- " + name + ".mp4"));
+
+            console.log(colors.yellow("Video downloaded: " + videoID));
+
+            connection.query('SELECT downloaded FROM videos WHERE videoID = "' + videoID + '"', (error, results, fields) => {
+                if (error) {
+                    throw error;
+                }
+                if (results.length == 0) {
+                    connection.query('INSERT INTO videos(videoID, title, downloaded) VALUES("' + videoID + '", "' + name + '", 1)', (error, results, fields) => {
+                        if (error) {
+                            throw error;
+                        }
+                    });
+                } else if (results[0].downloaded == 0) {
+                    connection.query('UPDATE videos SET downloaded = 1 WHERE videoID = "' + videoID + '"', (error, results, fields) => {
+                        if (error) {
+                            throw error;
+                        }
+                    });
+                }
+            });
+        } catch (error) {
+            console.log(colors.red("Error on downloading video: " + videoID));
+        }
+
+        this.downloadQueue--;
+    }
+
+    /*
     downloadVideo(url, name, videoID) {
         https.get(url, (res) => {
             if (res.statusCode == 302 || res.statusCode == 303) {
@@ -127,7 +155,7 @@ class YTDownloader {
                 });
             }
         });
-    }
+    } */
 
 }
 

@@ -7,7 +7,8 @@ class Client {
         this.id = data.id;
         this.videoList = Array();
         this.videoToDownloadList = Array();
-        this.interval = Math.floor((Math.random() * 3) + 1) * 60000;
+        this.interval = 60000;
+        // PROD - this.interval = Math.floor((Math.random() * 3) + 1) * 60000;
         // Little log !
         console.log(colors.green("New client " + data.name + " [" + this.interval / 60000 + "m]"));
         setInterval(() => {
