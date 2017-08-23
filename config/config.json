@@ -8,11 +8,10 @@
     "mysql": {
         "host": "localhost",
         "user": "root",
-        "pass": "111",
+        "pass": "",
         "data": "youtube"
     },
     "youtube": {
-        "apiKey": "AIzaSyDZhNjwstpzXcH7CrTG5yHIRpm3dI1JOcQ",
-        "apiACM": "https://helloacm.com/api/video/?cached&video=https://www.youtube.com/watch?v="
+        "apiKey": "AIzaSyDZhNjwstpzXcH7CrTG5yHIRpm3dI1JOcQ"
     }
 }
