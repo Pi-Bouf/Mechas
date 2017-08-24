@@ -43,4 +43,4 @@ console.log("");
 // Start DBManager
 new DBManager();
 // Start YTDownloader
-new YTDownloader();
+//new YTDownloader();

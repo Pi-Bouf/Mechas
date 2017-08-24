@@ -4,9 +4,16 @@ var path = require('path');
 
 class WebServer {
     constructor(port) {
-        app.use('/', express.static(path.join(__dirname, '../../public')));
         app.listen(port);
         console.log("WebServer started !");
+
+        this.initRoute();
+    }
+
+    initRoute() {
+        app.get('/etage/:etagenum/chambre', function (req, res) {
+            res.render('test.ejs', { etage: req.params.etagenum });
+        });
     }
 }
 
