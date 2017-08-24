@@ -2,6 +2,8 @@ body {
     background: #3a6186;
     background: -webkit-linear-gradient(to left, #3a6186, #89253e);
     background: linear-gradient(to left, #3a6186, #89253e);
+    height: 100%;
+    width: 100%;
 }
 
 #preloader {

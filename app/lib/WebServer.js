@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var serveIndex = require('serve-index');
 
 class WebServer {
     constructor(port) {
@@ -11,8 +12,10 @@ class WebServer {
     }
 
     initRoute() {
-        app.get('/etage/:etagenum/chambre', function (req, res) {
-            res.render('test.ejs', { etage: req.params.etagenum });
+        app.use('/', express.static(path.join(__dirname, "../../public")));
+
+        app.get('/user/list', (req, res) => {
+            res.send(clientList);
         });
     }
 }

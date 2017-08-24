@@ -10,16 +10,17 @@
   "dependencies": {
     "colors": "^1.1.2",
     "ejs": "^2.5.7",
-    "express": "^4.15.2",
+    "express": "^4.15.4",
     "jquery.2": "^1.0.0",
     "materialize-css": "^0.98.1",
     "mdi": "^1.8.36",
     "merge-stream": "^1.0.1",
-    "mysql": "^2.13.0",
+    "mysql": "^2.14.1",
     "nodemon": "^1.11.0",
     "path": "^0.12.7",
+    "serve-index": "^1.9.0",
     "socket.io": "^1.7.3",
-    "ytdl-core": "^0.15.0"
+    "ytdl-core": "^0.15.2"
   },
   "devDependencies": {
     "gulp": "^3.9.1"
