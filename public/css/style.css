@@ -1,15 +1,49 @@
 body {
-    background: #3a6186;
-    background: -webkit-linear-gradient(to left, #3a6186, #89253e);
-    background: linear-gradient(to left, #3a6186, #89253e);
-    height: 100%;
-    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffd89b;
+    background: -webkit-linear-gradient(to right, #19547b, #ffd89b);
+    background: linear-gradient(to right, #19547b, #ffd89b);
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
-#preloader {
+#loader {
+    margin-top: 250px;
+}
+
+#loader .ball-holder {animation: ballFrames 1.3s linear infinite;} 
+
+@keyframes ballFrames {
+    0 {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.ring {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+    border: 4px solid white;
+    border-radius: 100%;
+}
+
+.ball-holder {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -35px;
-    margin-top: -35px;
+    width: 16px;
+    height: 37px;
+    left: 11px;
+    top: 0px;
+}
+
+.ball {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background: #1984C7;
+    border: 3px solid white;
 }

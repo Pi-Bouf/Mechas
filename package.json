@@ -8,8 +8,8 @@
   "author": "Pierre Bouffier",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.6.5",
     "colors": "^1.1.2",
-    "ejs": "^2.5.7",
     "express": "^4.15.4",
     "jquery.2": "^1.0.0",
     "materialize-css": "^0.98.1",

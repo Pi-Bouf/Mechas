@@ -11,6 +11,11 @@ gulp.task('jquery', function() {
         .pipe(gulp.dest('public/js/'));
 });
 
+gulp.task('angular', function() {
+    return gulp.src(['node_modules/angular/angular.min.js'])
+        .pipe(gulp.dest('public/js/'));
+});
+
 gulp.task('mdi', function() {
     var css = gulp.src(['node_modules/mdi/css/materialdesignicons.min.css'])
         .pipe(gulp.dest('public/css/'));
@@ -21,4 +26,4 @@ gulp.task('mdi', function() {
     return merge(css, font);
 });
 
-gulp.task('move', ['materialize', 'jquery', 'mdi']);
+gulp.task('move', ['materialize', 'jquery', 'mdi', 'angular']);
