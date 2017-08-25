@@ -23,6 +23,7 @@
     "ytdl-core": "^0.15.2"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0"
   }
 }
