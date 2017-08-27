@@ -17,6 +17,11 @@ gulp.task('angular', function () {
         .pipe(gulp.dest('public/js/'));
 });
 
+gulp.task('angular-route', function () {
+    return gulp.src(['node_modules/angular-route/angular-route.min.js'])
+        .pipe(gulp.dest('public/js/'));
+});
+
 gulp.task('mdi', function () {
     var css = gulp.src(['node_modules/mdi/css/materialdesignicons.min.css'])
         .pipe(gulp.dest('public/css/'));
@@ -36,4 +41,4 @@ gulp.task('compass', function () {
         }));
 });
 
-gulp.task('move', ['materialize', 'jquery', 'mdi', 'angular']);
+gulp.task('move', ['materialize', 'jquery', 'mdi', 'angular', 'angular-route']);

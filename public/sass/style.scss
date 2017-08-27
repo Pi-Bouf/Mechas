@@ -5,6 +5,9 @@ body {
     background: #ffd89b;
     background: -webkit-linear-gradient(to right, #19547b, #ffd89b);
     background: linear-gradient(to right, #19547b, #ffd89b);
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 html {
     height: 100%;
@@ -17,14 +20,13 @@ html {
     transform: translate(-50%,-50%);
 
     .ball-holder {
-        animation: ballFrames 2s linear infinite;
+        animation: ballFrames 1.3s linear infinite;
         position: absolute;
         width: 24px;
         height: 76px;
         left: 23px;
         top: -3px;
     }
-
     .ring {
         position: relative;
         width: 80px;
@@ -49,8 +51,7 @@ html {
     100% {transform: rotate(360deg);}
 }
 
-
-
-.ball-holder {
-
+#user-list {
+    font-size: 20px;
+    color: #AAAAAA;
 }

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mainApp">
 
 <head>
     <title>M.E.C.H.A.S</title>
     <link rel="stylesheet" href="./css/materialize.min.css">
     <link rel="stylesheet" href="./css/materialdesignicons.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 </head>
 
 <body>
-    <div id="loader">
+    <div id="loader" ng-show="somethingLoading">
         <div class="ring">
             <div class="ball-holder">
                 <div class="ball"></div>
             </div>
         </div>
     </div>
+
+    <div class="container" ng-view>
+    </div>
 </body>
 
 
 <script src="./js/jquery.min.js"></script>
 <script src="./js/materialize.min.js"></script>
+<script src="./js/angular.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
 <script src="./js/main.js"></script>
 
 </html>

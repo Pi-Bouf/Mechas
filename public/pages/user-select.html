@@ -1,0 +1,14 @@
+<div class="row" id="user-list" ng-repeat="x in userList">
+    <div class="col offset-l4 l4 offset-m3 m6 offset-s1 s10">
+        <div class="card-panel hoverable" style="cursor: pointer;">
+            <div class="row" style="margin-bottom: 0px;">
+                <div class="col m2 user-icon">
+                    <span class="mdi mdi-comment-account-outline"></span>
+                </div>
+                <div class="col m10 user-item">
+                    {{ x.name }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
