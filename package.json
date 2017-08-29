@@ -19,6 +19,7 @@
     "mysql": "^2.14.1",
     "nodemon": "^1.11.0",
     "path": "^0.12.7",
+    "promise": "^8.0.1",
     "serve-index": "^1.9.0",
     "socket.io": "^1.7.3",
     "ytdl-core": "^0.15.2"

@@ -2,6 +2,7 @@ global.config = require('../config/config.json');
 global.DBManager = require('./lib/DBManager');
 global.colors = require('colors');
 global.Client = require('./model/Client');
+global.Music = require('./model/Music');
 var WebServer = require('./lib/WebServer');
 var SocketServer = require('./lib/SocketServer');
 var YTDownloader = require('./lib/YTDownloader');
@@ -35,6 +36,15 @@ global.connection = mysql.createConnection({
     database: config.mysql.data
 });
 console.log("Connected to MySQL !");
+
+
+var newMusic = new Music("53iCEDtDq6M"); // Synthwave/NewRetroWave Music Radio 24h/7d Stream ! Enjoy the vibes !
+var newMusic2 = new Music("Pe5a7SwRKGQ"); // KNOCK Bande Annonce (Comédie 2017) Omar Sy, Alex Lutz
+var newMusic3 = new Music("IFU-zlUhY-A"); // LE JEU VIDEAL - Deadlight
+var newMusic4 = new Music("EJgh5Ka9hi8"); // woob - Omricon (Magnatron 2.0)
+
+
+/*
 // Start WebServer
 new WebServer(config.web.port);
 // Start SocketServer
@@ -43,4 +53,4 @@ console.log("");
 // Start DBManager
 new DBManager();
 // Start YTDownloader
-//new YTDownloader();
+//new YTDownloader(); */
