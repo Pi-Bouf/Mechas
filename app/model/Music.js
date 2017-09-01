@@ -4,7 +4,7 @@ class Music {
     constructor(videoID) {
         this.videoID = videoID;
         this.state = null;
-        
+
         // Check in BDD if video exist
         new Promise((resolve, reject) => {
             connection.query('SELECT *FROM videos WHERE videoID = "' + this.videoID + '"', (error, results, fields) => {
@@ -24,15 +24,8 @@ class Music {
             } else {
                 // Check via the Youtube API
                 new Promise((resolve, reject) => {
-                    https.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoID + "&key=" + config.youtube.apiKey, (res) => {
-                        let videoDataSnippet = "";
-                        res.on("data", (data) => {
-                            videoDataSnippet += data;
-                        });
-                        res.on("end", () => {
-                            videoDataSnippet = JSON.parse(videoDataSnippet);
-                            resolve(videoDataSnippet.items[0].snippet.title)
-                        });
+                    HttpPooling.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoID + "&key=" + config.youtube.apiKey, (response) => {
+                        resolve(response.data.items[0].snippet.title);
                     });
                 }).then((data_http) => {
                     console.log(data_http);
@@ -41,7 +34,7 @@ class Music {
                     console.log(colors.red("Can't get video data (" + videoID + "). Error: " + error_http));
                     this.state = "_error";
                 });
-                
+
             }
         }).catch((error) => {
             console.log(error);
