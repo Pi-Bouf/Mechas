@@ -7,7 +7,7 @@ class Music {
 
         // Check in BDD if video exist
         new Promise((resolve, reject) => {
-            connection.query('SELECT *FROM videos WHERE videoID = "' + this.videoID + '"', (error, results, fields) => {
+            connection.query('SELECT *FROM videos WHERE video_id = "' + this.videoID + '"', (error, results, fields) => {
                 if (error) {
                     reject("Error DB !");
                     throw error;

@@ -20,7 +20,6 @@ class HttpPooling {
     }
 
     executeQueue() {
-        console.log(colors.green("New request !"));
         if(this.queue.length != 0) {
             this.isWorking = true;
             let tmpObj = this.queue[0];
