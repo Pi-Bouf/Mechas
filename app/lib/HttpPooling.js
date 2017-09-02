@@ -39,7 +39,7 @@ class HttpPooling {
                     this.executeQueue();
                 });
             }).on('error', (e) => {
-                console.log(colors.red("Error ! " + e));
+                console.log(colors.red(e), colors.red(tmpObj.url));
 
                 this.queue.remove(tmpObj);
                 this.executeQueue();
