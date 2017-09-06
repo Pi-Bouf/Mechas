@@ -1,15 +1,16 @@
 // Loading utils
-global.config = require('../config/config.json');
-global.colors = require('colors');
 var mysql = require('mysql');
 var WebServer = require('./lib/WebServer');
+var Dictionnary = require("collections/dict");
+global.config = require('../config/config.json');
+global.colors = require('colors');
 global.UserLoader = require('./lib/UserLoader');
 global.HttpPooling = new (require('./lib/HttpPooling'));
 
 // Loading models
 global.User = require('./model/User');
 global.Music = require('./model/Music');
-global.MusicArray = new Array;
+global.MusicArray = new Dictionnary;
 
 
 /* ######################################################### */

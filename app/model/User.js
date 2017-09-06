@@ -42,13 +42,14 @@ class User {
         this.playlistArray.forEach((playlist_id) => {
             HttpPooling.get('https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&playlistId=' + playlist_id + '&maxResults=50&key=' + config.youtube.apiKey, (response) => {
                 response.data.items.forEach((element) => {
-                    if (MusicArray.indexOf(element.contentDetails.videoId) == -1) {
-                        MusicArray.push(element.contentDetails.videoId, new Music(element.contentDetails.videoId))
+                    if (!MusicArray.has(element.contentDetails.videoId)) {
+                        MusicArray.set(element.contentDetails.videoId, new Music(element.contentDetails.videoId, this))
                     }
                     if (this.musicArray.indexOf(element.contentDetails.videoId) == -1) {
                         this.musicArray.push(element.contentDetails.videoId);
                     }
                 });
+                console.log(MusicArray.length);
             });
         });
     }
