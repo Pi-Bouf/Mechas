@@ -15,6 +15,8 @@ CREATE TABLE `users_playlists` (
   PRIMARY KEY (`user_id`, `playlist_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `users_playlists` VALUES(1, 'PL75UBCDxw6HGGL-mawsU7MQDY6-rfkHZM'), (2, 'PL75UBCDxw6HG6R75qxrxHU0HN453is-Vs');
+
 DROP TABLE IF EXISTS `videos`;
 CREATE TABLE `videos` (
   `video_id` varchar(15) NOT NULL,
