@@ -4,6 +4,13 @@ class Music {
     constructor(videoID) {
         this.videoID = videoID;
         this.state = null;
+        this.title = null;
+        this.title_tag = null;
+        this.author_tag = null;
+        this.album_tag = null;
+        this.year_tag = null;
+        this.style_tag = null;
+        this.downloaded = null;
 
         // Check in BDD if video exist
         new Promise((resolve, reject) => {
@@ -41,6 +48,23 @@ class Music {
         });
     }
 
+    addUser(user) {
+        connection.query('SELECT * FROM users_videos WHERE video_id = "' + this.videoID + '" AND user_id = "' + user.id + '"', (error, results, fields) => {
+            if (error) {
+                console.log(colors.red("[addUser] Can't check if user " + user.name + " have the video " + this.videoID));
+                throw error;
+            }
+            if(results.length == 0) {
+                connection.query('INSERT INTO users_videos VALUES(' + user.id + ', "' + this.videoID + '")', (error, results, fields) => {
+                    if (error) {
+                        console.log(colors.red("[addUser] Can't add video " + this.videoID + " to user " + user.name));
+                        throw error;
+                    }
+                });
+            }
+        });
+    }
+
     downloadVideo() {
 
     }
@@ -50,7 +74,7 @@ class Music {
     }
 
     save() {
-
+        
     }
 }
 

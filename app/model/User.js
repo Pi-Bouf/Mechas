@@ -47,9 +47,9 @@ class User {
                     }
                     if (this.musicArray.indexOf(element.contentDetails.videoId) == -1) {
                         this.musicArray.push(element.contentDetails.videoId);
+                        MusicArray.get(element.contentDetails.videoId).addUser(this);
                     }
                 });
-                console.log(MusicArray.length);
             });
         });
     }
