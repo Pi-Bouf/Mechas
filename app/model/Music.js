@@ -11,6 +11,7 @@ class Music {
         this.year_tag = null;
         this.style_tag = null;
         this.downloaded = null;
+        this.users = new Dictionnary;
 
         // Check in BDD if video exist
         new Promise((resolve, reject) => {
@@ -32,10 +33,11 @@ class Music {
                 // Check via the Youtube API
                 new Promise((resolve, reject) => {
                     HttpPooling.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoID + "&key=" + config.youtube.apiKey, (response) => {
-                        resolve(response.data.items[0].snippet.title);
+                        resolve(response.data.items[0].snippet);
                     });
                 }).then((data_http) => {
                     console.log(data_http);
+                    this.title = data_http.title;
                     this.state = "_new";
                 }).catch((error_http) => {
                     console.log(colors.red("Can't get video data (" + videoID + "). Error: " + error_http));
@@ -62,6 +64,10 @@ class Music {
                     }
                 });
             }
+            // Add user to relationnal model
+            if(!this.users.has(user.id)) {
+                this.users.set(user.id, user);
+            }
         });
     }
 
@@ -74,7 +80,27 @@ class Music {
     }
 
     save() {
-        
+        connection.query('SELECT * FROM videos WHERE video_id = "' + this.videoID + '"', (error, results, fields) => {
+            if (error) {
+                console.log(colors.red("[save() => Music] Can't check if video " + this.videoID + " is stored in MySQL. "));
+                throw error;
+            }
+            if(results.length == 0) {
+                connection.query('INSERT INTO videos VALUES(' + user.id + ', "' + this.videoID + '")', (error, results, fields) => {
+                    if (error) {
+                        console.log(colors.red("[addUser] Can't add video " + this.videoID + " to user " + user.name));
+                        throw error;
+                    }
+                });
+            } else {
+                connection.query('UPDATE', (error, results, fields) => {
+                    if (error) {
+                        console.log(colors.red("[addUser] Can't add video " + this.videoID + " to user " + user.name));
+                        throw error;
+                    }
+                });
+            }
+        });
     }
 }
 

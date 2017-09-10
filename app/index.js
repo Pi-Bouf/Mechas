@@ -1,7 +1,7 @@
 // Loading utils
 var mysql = require('mysql');
 var WebServer = require('./lib/WebServer');
-var Dictionnary = require("collections/dict");
+global.Dictionnary = require("collections/dict");
 global.config = require('../config/config.json');
 global.colors = require('colors');
 global.UserLoader = require('./lib/UserLoader');
