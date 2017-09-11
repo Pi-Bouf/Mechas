@@ -36,11 +36,11 @@ class Music {
                         resolve(response.data.items[0].snippet);
                     });
                 }).then((data_http) => {
-                    console.log(data_http);
                     this.title = data_http.title;
+                    console.log(this.title);
                     this.state = "_new";
                 }).catch((error_http) => {
-                    console.log(colors.red("Can't get video data (" + videoID + "). Error: " + error_http));
+                    console.log(colors.red("[Music(constructor)] Can't get video data (" + videoID + "). Error: " + error_http));
                     this.state = "_error";
                 });
 
@@ -53,20 +53,20 @@ class Music {
     addUser(user) {
         connection.query('SELECT * FROM users_videos WHERE video_id = "' + this.videoID + '" AND user_id = "' + user.id + '"', (error, results, fields) => {
             if (error) {
-                console.log(colors.red("[addUser] Can't check if user " + user.name + " have the video " + this.videoID));
+                console.log(colors.red("[Music(addUser)] Can't check if user " + user.name + " have the video " + this.videoID));
                 throw error;
             }
             if(results.length == 0) {
                 connection.query('INSERT INTO users_videos VALUES(' + user.id + ', "' + this.videoID + '")', (error, results, fields) => {
                     if (error) {
-                        console.log(colors.red("[addUser] Can't add video " + this.videoID + " to user " + user.name));
+                        console.log(colors.red("[Music(addUser)] Can't add video " + this.videoID + " to user " + user.name));
                         throw error;
                     }
                 });
             }
             // Add user to relationnal model
-            if(!this.users.has(user.id)) {
-                this.users.set(user.id, user);
+            if(!this.users.has(user.id.toString())) {
+                this.users.set(user.id.toString(), user);
             }
         });
     }
@@ -82,20 +82,20 @@ class Music {
     save() {
         connection.query('SELECT * FROM videos WHERE video_id = "' + this.videoID + '"', (error, results, fields) => {
             if (error) {
-                console.log(colors.red("[save() => Music] Can't check if video " + this.videoID + " is stored in MySQL. "));
+                console.log(colors.red("[Music(save)] Can't check if video " + this.videoID + " is stored in MySQL. "));
                 throw error;
             }
             if(results.length == 0) {
-                connection.query('INSERT INTO videos VALUES(' + user.id + ', "' + this.videoID + '")', (error, results, fields) => {
+                connection.query('INSERT INTO videos VALUES("' + this.videoID + '", "' + this.title + '", "' + this.title_tag + '", "' + this.author_tag + '", "' + this.album_tag + '", "' + this.year_tag + '", "' + this.style_tag + '", "' + this.downloaded + '")', (error, results, fields) => {
                     if (error) {
-                        console.log(colors.red("[addUser] Can't add video " + this.videoID + " to user " + user.name));
+                        console.log(colors.red("[Music(save)] Can't save (new insert) video " + this.videoID));
                         throw error;
                     }
                 });
             } else {
-                connection.query('UPDATE', (error, results, fields) => {
+                connection.query('UPDATE videos SET title = "' + this.title + '", title_tag = "' + this.title_tag + '", author_tag = "' + this.author_tag + '", album_tag = "' + this.album_tag + '", year_tag = "' + this.year_tag + '", style_tag = "' + this.style_tag + '", downloaded = "' + this.downloaded + '")', (error, results, fields) => {
                     if (error) {
-                        console.log(colors.red("[addUser] Can't add video " + this.videoID + " to user " + user.name));
+                        console.log(colors.red("[Music(save)] Can't update video " + this.videoID));
                         throw error;
                     }
                 });
