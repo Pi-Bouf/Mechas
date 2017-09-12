@@ -32,6 +32,9 @@ Array.prototype.remove = function(data) {
         this.splice(i, 1);
     }
 }
+Array.prototype.check = function(data) {
+    return this.indexOf(data) != -1;
+}
 
 // Connection to MySQL
 global.connection = mysql.createConnection({
