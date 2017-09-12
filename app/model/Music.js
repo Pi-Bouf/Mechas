@@ -3,7 +3,6 @@ const https = require('https');
 class Music {
     constructor(videoID) {
         this.videoID = videoID;
-        this.state = null;
         this.title = null;
         this.title_tag = null;
         this.author_tag = null;
@@ -37,11 +36,10 @@ class Music {
                     });
                 }).then((data_http) => {
                     this.title = data_http.title;
-                    console.log(this.title);
-                    this.state = "_new";
+                    console.log(colors.blue("New music added: " + this.title));
+                    this.save();
                 }).catch((error_http) => {
                     console.log(colors.red("[Music(constructor)] Can't get video data (" + videoID + "). Error: " + error_http));
-                    this.state = "_error";
                 });
 
             }
@@ -93,7 +91,8 @@ class Music {
                     }
                 });
             } else {
-                connection.query('UPDATE videos SET title = "' + this.title + '", title_tag = "' + this.title_tag + '", author_tag = "' + this.author_tag + '", album_tag = "' + this.album_tag + '", year_tag = "' + this.year_tag + '", style_tag = "' + this.style_tag + '", downloaded = "' + this.downloaded + '")', (error, results, fields) => {
+                console.log('UPDATE videos SET title = "' + this.title + '", title_tag = "' + this.title_tag + '", author_tag = "' + this.author_tag + '", album_tag = "' + this.album_tag + '", year_tag = "' + this.year_tag + '", style_tag = "' + this.style_tag + '", downloaded = "' + this.downloaded + '" WHERE video_id = "' + this.videoID + '"');
+                connection.query('UPDATE videos SET title = "' + this.title + '", title_tag = "' + this.title_tag + '", author_tag = "' + this.author_tag + '", album_tag = "' + this.album_tag + '", year_tag = "' + this.year_tag + '", style_tag = "' + this.style_tag + '", downloaded = "' + this.downloaded + '" WHERE video_id = "' + this.videoID + '"', (error, results, fields) => {
                     if (error) {
                         console.log(colors.red("[Music(save)] Can't update video " + this.videoID));
                         throw error;

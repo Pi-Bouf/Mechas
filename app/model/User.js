@@ -47,10 +47,7 @@ class User {
                     }
                     if (this.musicArray.indexOf(element.contentDetails.videoId) == -1) {
                         this.musicArray.push(element.contentDetails.videoId);
-                        
-                        let music = MusicArray.get(element.contentDetails.videoId);
-                        music.addUser(this);
-                        music.save();
+                        MusicArray.get(element.contentDetails.videoId).addUser(this);
                     }
                 });
             });
