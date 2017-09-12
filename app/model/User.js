@@ -38,7 +38,7 @@ class User {
     }
 
     checkPlaylistData() {
-        console.log(colors.magenta("Start checking data for " + this.name));
+        console.log(colors.magenta("Checking data for " + this.name));
         this.playlistArray.forEach((playlist_id) => {
             HttpPooling.get('https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&playlistId=' + playlist_id + '&maxResults=50&key=' + config.youtube.apiKey, (response) => {
                 response.data.items.forEach((element) => {
