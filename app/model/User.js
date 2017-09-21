@@ -6,6 +6,7 @@ class User {
         this.id = data.id;
         this.playlistArray = new Array;
         this.musicArray = new Array;
+        this.isDownloading = false;
 
         this.interval = 20000;
         // PROD - this.interval = Math.floor((Math.random() * 3) + 1) * 60000;
@@ -50,6 +51,7 @@ class User {
                         MusicArray.get(element.contentDetails.videoId).addUser(this);
                     }
                 });
+                this.downloadingMusics();
             });
         });
     }
@@ -68,6 +70,24 @@ class User {
                 console.log(colors.yellow("User " + this.name + " has already playlist " + playlist_id + " !"))
             }
         });
+    }
+
+    downloadingMusics() {
+        console.log("Hey, start downloading music !");
+        if(!this.isDownloading) {
+            this.isDownloading = true;
+            this.musicArray.forEach((element) => {
+                let tmpMusic = MusicArray.get(element);
+                if(tmpMusic.getReadyToDownload()) {
+                    tmpMusic.download(() => {
+                        this.downloadingMusics();
+                        console.log("Terminé ! :D");
+                    });
+                    return;
+                }
+            });
+            this.isDownloading = false;
+        }
     }
 }
 
