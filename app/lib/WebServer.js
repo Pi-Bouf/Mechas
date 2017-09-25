@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var serveIndex = require('serve-index');
+var UserRoutes = require('./UsersRoutes');
 
 class WebServer {
     constructor(port) {
@@ -15,8 +16,14 @@ class WebServer {
         app.use('/', express.static(path.join(__dirname, "../../public")));
 
         app.get('/user/list', (req, res) => {
-            res.send(clientList);
+            res.send(userList);
         });
+
+        app.get('/user/:id', (req, res) => {
+            res.send(req.params.id);
+        });
+
+        app.use('/steak', UserRoutes);
     }
 }
 

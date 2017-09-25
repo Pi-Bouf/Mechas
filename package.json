@@ -22,6 +22,7 @@
     "path": "^0.12.7",
     "promise": "^8.0.1",
     "serve-index": "^1.9.0",
+    "serve-static": "^1.12.6",
     "socket.io": "^1.7.3",
     "ytdl-core": "^0.15.2"
   },
