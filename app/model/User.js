@@ -73,19 +73,19 @@ class User {
     }
 
     downloadingMusics() {
-        console.log("Hey, start downloading music !");
-        if(!this.isDownloading) {
+        if (!this.isDownloading) {
             this.isDownloading = true;
-            this.musicArray.forEach((element) => {
-                let tmpMusic = MusicArray.get(element);
+            for(var i = 0; i < this.musicArray.length; i++) {
+                let tmpMusic = MusicArray.get(this.musicArray[i]);
                 if(tmpMusic.getReadyToDownload()) {
                     tmpMusic.download(() => {
+                        this.isDownloading = false;
                         this.downloadingMusics();
-                        console.log("Terminé ! :D");
                     });
-                    return;
+                    return true;
                 }
-            });
+            }
+
             this.isDownloading = false;
         }
     }
