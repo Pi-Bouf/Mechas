@@ -28,9 +28,11 @@ app.controller('mainController', function ($scope, $http, $rootScope, $timeout) 
 });
 
 app.controller('userController', function ($scope, $http, $rootScope, $routeParams, $timeout) {
+    $rootScope.somethingLoading = true;
     $http.get("/user/" + $routeParams.USER)
         .then((response) => {
             console.log(response);
+            $rootScope.somethingLoading = false;
         }, (error) => {
             alert("ERROR");
         });
