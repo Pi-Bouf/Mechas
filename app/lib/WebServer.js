@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var serveIndex = require('serve-index');
-var UserRoutes = require('./UsersRoutes');
+var UserRoutes = require('./UserRoutes');
 
 class WebServer {
     constructor(port) {
@@ -16,14 +16,11 @@ class WebServer {
         app.use('/', express.static(path.join(__dirname, "../../public")));
 
         app.get('/user/list', (req, res) => {
+            res.setHeader('Content-Type', 'application/json');
             res.send(userList);
         });
 
-        app.get('/user/:id', (req, res) => {
-            res.send(req.params.id);
-        });
-
-        app.use('/steak', UserRoutes);
+        app.use('/user/', UserRoutes);
     }
 }
 
