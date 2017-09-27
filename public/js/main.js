@@ -1,6 +1,10 @@
 var app = angular.module('mainApp', ['ngRoute']);
 
-
+app.run(($rootScope, $location, $timeout) => {
+    $rootScope.go = function(path) {
+        $location.path(path);
+    }
+});
 
 app.config(($routeProvider) => {
     $routeProvider

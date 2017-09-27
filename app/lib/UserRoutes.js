@@ -11,6 +11,12 @@ router.get('/:USER', (req, res) => {
             res.send(element);
         }
     }, this);
+
+    if(user === null) {
+        user = req.params.USER;
+    }
+
+    console.log(req);
 });
 
 module.exports = router;
