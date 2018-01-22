@@ -15,8 +15,6 @@ router.get('/:USER', (req, res) => {
     if(user === null) {
         user = req.params.USER;
     }
-
-    console.log(req);
 });
 
 module.exports = router;

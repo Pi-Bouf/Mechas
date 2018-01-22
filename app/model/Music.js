@@ -36,7 +36,11 @@ class Music {
                 // Check via the Youtube API
                 new Promise((resolve, reject) => {
                     HttpPooling.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoID + "&key=" + config.youtube.apiKey, (response) => {
-                        resolve(response.data.items[0].snippet);
+                        if(response.data.items.length > 0) {
+                            resolve(response.data.items[0].snippet);
+                        } else {
+                            reject("No video at this ID...");
+                        }
                     });
                 }).then((data_http) => {
                     this.title = data_http.title.replace(/\"/g, '').replace(/\'/g, '').replace(/\//g, '');
