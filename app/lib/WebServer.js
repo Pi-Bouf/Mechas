@@ -13,7 +13,10 @@ class WebServer {
     }
 
     initRoute() {
-        app.use('/', express.static(path.join(__dirname, "../../public")));
+        app.use('/Musics', serveIndex(path.join(__dirname, "../../data/Musics"), {'icons': true}));
+        app.get('/Musics/*', (req, res) => {
+            res.download(path.join(__dirname, "../../data", decodeURIComponent(req.url)));
+        });
 
         app.get('/user/list', (req, res) => {
             res.setHeader('Content-Type', 'application/json');
