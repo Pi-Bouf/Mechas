@@ -6,7 +6,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `name`) VALUES
-(1, 'Pierre'), (2, 'Camille');
+(1, 'Pierre');
 
 DROP TABLE IF EXISTS `users_playlists`;
 CREATE TABLE `users_playlists` (
@@ -15,7 +15,7 @@ CREATE TABLE `users_playlists` (
   PRIMARY KEY (`user_id`, `playlist_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `users_playlists` VALUES(1, 'PL75UBCDxw6HGGL-mawsU7MQDY6-rfkHZM'), (2, 'PL75UBCDxw6HEInvDLR4ANXzKckoPZdSTj');
+INSERT INTO `users_playlists` VALUES(1, 'PL75UBCDxw6HGGL-mawsU7MQDY6-rfkHZM');
 
 DROP TABLE IF EXISTS `videos`;
 CREATE TABLE `videos` (

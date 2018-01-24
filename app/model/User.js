@@ -8,8 +8,8 @@ class User {
         this.musicArray = new Array;
         this.isDownloading = false;
 
-        this.interval = 20000;
-        // PROD - this.interval = Math.floor((Math.random() * 3) + 1) * 60000;
+        // DEV - this.interval = 20000;
+        this.interval = Math.floor((Math.random() * 3) + 1) * 60000;
         console.log(colors.green("New user " + data.name + " [" + this.interval / 60000 + "m]"));
 
         this.getPlaylist();

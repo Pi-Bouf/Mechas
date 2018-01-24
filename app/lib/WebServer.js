@@ -14,7 +14,7 @@ class WebServer {
 
     initRoute() {
         app.use('/Musics', serveIndex(path.join(__dirname, "../../data/Musics"), {'icons': true}));
-        app.get('/Musics/*', (req, res) => {
+        app.get('/Musics/*.mp3', (req, res) => {
             res.download(path.join(__dirname, "../../data", decodeURIComponent(req.url)));
         });
 
